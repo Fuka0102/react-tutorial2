@@ -16,12 +16,11 @@ function Gif({ id }) {
 
 export function App() {
   /* ??? GIF ID を表す state を生成する */
-  const [id, setGif] = React.useState(getGifId());
+  const [id, setGif] = React.useState(gifIds[0]);
 
   const handleClick = () => {
     /* ??? ボタンが押されると GIF 画像が切り替わる */
-    const newId = getGifId();
-    setGif(newId);
+    setGif(getGifId());
   };
 
   return (
