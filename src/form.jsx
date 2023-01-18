@@ -7,17 +7,15 @@ const options = [
   { value: '', label: 'その他' },
 ];
 
-function TextArea() {
-  const [name, setName] = React.useState('PHP');
-  const handleChange = (e) => setName(e.target.value);
-  return <input value={name} onChange={handleChange} />;
-}
-
 export function App() {
-  const [answer, setAnswer] = React.useState('JavaScript');
+  const [val, setVal] = React.useState('js');
+  const [text, setText] = React.useState('');
 
-  const getAnswer = (e) => {
-    setAnswer(e.target.name);
+  const handleRadioChange = (e) => setVal(e.target.value);
+  const handleTextChange = (e) => setText(e.target.value);
+
+  const getAnswer = () => {
+    return val === '' ? text : options.find((o) => o.value === val).label;
   };
 
   return (
@@ -27,16 +25,21 @@ export function App() {
           <input
             type='radio'
             value={option.value}
-            onChange={getAnswer}
-            checked={answer === option.label}
+            onChange={handleRadioChange}
+            checked={val === option.value}
             name={option.label}
           />
           {option.label}
         </label>
       ))}
-      {answer === 'その他' ? <TextArea value={answer} /> : false}
-      <hr></hr>
-      <p>回答:{answer === 'その他' ? TextArea.value : answer}</p>
+      {val === '' && (
+        <p>
+          自由記入：
+          <input value={text} onChange={handleTextChange} />
+        </p>
+      )}
+      <hr />
+      <p>回答：{getAnswer()}</p>
     </>
   );
 }
