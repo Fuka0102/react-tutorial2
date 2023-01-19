@@ -1,17 +1,15 @@
 import React from 'react';
 
-function Password(prop) {
-  const [isRevealPassword, setIsRevealPassword] = React.useState(false);
+function Password({ value, onChange }) {
+  const [type, setIsRevealPassword] = React.useState('password');
 
-  const togglePassword = () => {
-    setIsRevealPassword((prevState) => !prevState);
-  };
+  const togglePassword = () => setIsRevealPassword(type === 'password' ? 'text' : 'password');
 
   return (
     <>
-      <input type={isRevealPassword ? 'text' : 'password'} onChange={prop.onChange} />
+      <input type={type} onChange={onChange} />
       <button onClick={togglePassword} role='presentation'>
-        {isRevealPassword ? '非表示' : '表示'}
+        {type === 'password' ? '非表示' : '表示'}
       </button>
     </>
   );
