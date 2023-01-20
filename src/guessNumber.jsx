@@ -4,18 +4,15 @@ const random = (max) => {
   return Math.floor(Math.random() * Math.floor(max)) + 1;
 };
 
-function Guess(prop) {
-  const [val, setVal] = React.useState('');
+function Guess({ onGuess }) {
+  const [val, setVal] = React.useState(0);
   const handleChange = (e) => setVal(e.target.value);
-
-  const judgeNumber = () => {
-    prop.onClick(Number(val));
-  };
+  const handleClick = () => onGuess(val * 1);
 
   return (
     <>
-      <input value={val} type='text' onChange={handleChange} />
-      <button type='button' onClick={judgeNumber}>
+      <input value={val} type='number' onChange={handleChange} />
+      <button type='button' onClick={handleClick}>
         予想する
       </button>
     </>
@@ -31,6 +28,8 @@ export function NumberGuessing() {
 
   const judge = (num) => {
     if (count === 0) return;
+
+    console.log(num);
 
     setCount(count - 1);
 
@@ -53,7 +52,7 @@ export function NumberGuessing() {
 
   return (
     <>
-      <Guess onClick={judge} />
+      <Guess onGuess={judge} />
       <p>{message}</p>
       <p>あと{count}回</p>
       <button type='button' onClick={reply}>
