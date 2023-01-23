@@ -8,11 +8,21 @@ function Todo() {
     { key: getKey(), text: 'Learn React', done: false },
     { key: getKey(), text: 'Get some good sleep', done: false },
   ]);
+
+  const handleCheck = (checked) => {
+    const newitems = items.map((item) => {
+      if (item.key === checked.key) {
+        item.done = !item.done;
+      }
+      return item;
+    });
+    setItems(newitems);
+  };
   return (
     <div className='panel'>
       <div className='panel-heading'>React Todo</div>
       {items.map((item) => (
-        <TodoItem key={item.key} item={item} />
+        <TodoItem key={item.key} item={item} onCheck={handleCheck} />
       ))}
       <div className='panel-block'>{items.length} items</div>
     </div>
