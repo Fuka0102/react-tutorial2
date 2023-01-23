@@ -42,6 +42,18 @@ function TodoItem({ item, onCheck }) {
   );
 }
 
+function Input() {
+  const [text, setText] = React.useState('');
+
+  const handleChange = (e) => setText(e.target.value);
+
+  return (
+    <div className='panel-block'>
+      <input type='text' className='input' placeholder='Enter to add' value={text} onChange={handleChange} />
+    </div>
+  );
+}
+
 export function App() {
   return (
     <div className='container is-fluid'>
