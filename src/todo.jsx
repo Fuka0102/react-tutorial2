@@ -37,7 +37,7 @@ function TodoItem({ item, onCheck }) {
   return (
     <label className='panel-block'>
       <input type='checkbox' checked={item.done} onChange={handleChange}></input>
-      {item.text}
+      <span className={item.done ? 'has-text-grey-light' : ''}>{item.text}</span>
     </label>
   );
 }
