@@ -12,13 +12,19 @@ function Todo() {
     <div className='panel'>
       <div className='panel-heading'>React Todo</div>
       {items.map((item) => (
-        <label className='panel-block'>
-          <input type='checkbox' />
-          {item.text}
-        </label>
+        <TodoItem key={item.key} item={item} />
       ))}
       <div className='panel-block'>{items.length} items</div>
     </div>
+  );
+}
+
+function TodoItem({ item }) {
+  return (
+    <label className='panel-block'>
+      <input type='checbox'></input>
+      {item.text}
+    </label>
   );
 }
 
