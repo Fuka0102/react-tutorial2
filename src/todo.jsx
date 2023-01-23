@@ -42,14 +42,28 @@ function TodoItem({ item, onCheck }) {
   );
 }
 
-function Input() {
+function Input({ onAdd }) {
   const [text, setText] = React.useState('');
 
   const handleChange = (e) => setText(e.target.value);
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      onAdd(text);
+      setText('');
+    }
+  };
+
   return (
     <div className='panel-block'>
-      <input type='text' className='input' placeholder='Enter to add' value={text} onChange={handleChange} />
+      <input
+        type='text'
+        className='input'
+        placeholder='Enter to add'
+        value={text}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+      />
     </div>
   );
 }
