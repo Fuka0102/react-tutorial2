@@ -8,7 +8,18 @@ function Todo() {
     { key: getKey(), text: 'Learn React', done: false },
     { key: getKey(), text: 'Get some good sleep', done: false },
   ]);
-  return null;
+  return (
+    <div className='panel'>
+      <div className='panel-heading'>React Todo</div>
+      {items.map((item) => (
+        <label className='panel-block'>
+          <input type='checkbox' />
+          {item.text}
+        </label>
+      ))}
+      <div className='panel-block'>{items.length} items</div>
+    </div>
+  );
 }
 
 export function App() {
