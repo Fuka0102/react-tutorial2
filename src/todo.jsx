@@ -18,9 +18,15 @@ function Todo() {
     });
     setItems(newitems);
   };
+
+  const handleAdd = (text) => {
+    setItems([...items, { key: getKey(), text, done: false }]);
+  };
+
   return (
     <div className='panel'>
       <div className='panel-heading'>React Todo</div>
+      <Input onAdd={handleAdd} />
       {items.map((item) => (
         <TodoItem key={item.key} item={item} onCheck={handleCheck} />
       ))}
