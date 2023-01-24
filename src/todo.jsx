@@ -25,6 +25,13 @@ function Todo() {
 
   const [filter, setFilter] = React.useState('ALL');
   const handleFilterChange = (value) => setFilter(value);
+
+  const displayItems = items.filter((item) => {
+    if (filter === 'ALL') return true;
+    if (filter === 'TODO') return !item.done;
+    if (filter === 'DONE') return item.done;
+  });
+
   return (
     <div className='panel'>
       <div className='panel-heading'>React Todo</div>
