@@ -74,6 +74,27 @@ function Input({ onAdd }) {
   );
 }
 
+function Filter({ value, onChange }) {
+  const handleClick = (key, e) => {
+    e.preventDefault();
+    onChange(key);
+  };
+
+  return (
+    <div className='panel-tabs'>
+      <a href='/' className={value === 'ALL' ? 'is-active' : ''} onClick={handleClick.bind(null, 'ALL')}>
+        All
+      </a>
+      <a href='/' className={value === 'TODO' ? 'is-active' : ''} onClick={handleClick.bind(null, 'TODO')}>
+        TODO
+      </a>
+      <a href='/' className={value === 'DONE' ? 'is-active' : ''} onClick={handleClick.bind(null, 'DONE')}>
+        DONE
+      </a>
+    </div>
+  );
+}
+
 export function App() {
   return (
     <div className='container is-fluid'>
